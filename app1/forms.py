@@ -1,5 +1,5 @@
 from django import forms
-from app1.models import Employee
+from app1.models import Employee, salary
 
 class EmployeeForm(forms.ModelForm):
     class Meta:
@@ -11,3 +11,7 @@ class EmployeeForm(forms.ModelForm):
         #if (not rno.isdigit()) or (len(rno) != 4):
             #raise forms.ValidationError('Code Must be Numeric with 4 digits')
         #return rno
+class salaryForm(forms.ModelForm):
+    class Meta:
+        model= salary
+        fields='__all__'

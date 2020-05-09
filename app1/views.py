@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from app1.forms import EmployeeForm
+from app1.forms import EmployeeForm, salaryForm
 from app1.models import Employee
+from app1.models import salary
 
 # Create your views here.
 def dashboard(request):
@@ -11,7 +12,17 @@ def sidebar(request):
     return render(request,'sidebar.html')
 
 def salary(request):
-    return render(request,'Salary.html')
+    form = salaryForm()
+    if request.method == 'POST':
+        print("qqqqqqqqqqq")
+        form = salaryForm(request.POST, request.FILES)
+        if form.is_valid():
+            print("wwwwwwwwwwwwww")
+            form.save()
+            return HttpResponseRedirect('salary')
+        else:
+            print("############INVALID FORM############")
+    return render(request,'Salary.html',{"form":form})
 
 
 # def employee(request):

@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'sidebar.html' %}
 {% block content %}
 
   <div class="container-fluid" style="margin-top: 7px;">
@@ -73,115 +73,130 @@
       </table>
     </div>
 </div>
-<form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">{% csrf_token %}
+<!-- {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+        {% endif %} -->
+
+<form action="salary" method="post" enctype="multipart/form-data" class="form-horizontal">{% csrf_token %}
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card card-body">
+        <h3 class="text-center mb-4">Salary Scale</h3>
+        <div class="card-body card-block">
+          <div class="row form-group">
+            <div class="col col-md-3"><label for="{{ form.department.name }}" class=" form-control-label">Department</label></div>
+            <div class="col-12 col-md-9">
+              <select name="{{ form.department.name }}" id="{{ form.department.id_for_label }}" class="form-control">
+                {% for choice in form.department.field.choices %}
+                <option value="{{ choice.0 }}"> {{ choice.1 }} </option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col col-md-3"><label for="{{ form.designation.name }}" class=" form-control-label">Designation</label></div>
+            <div class="col-12 col-md-9">
+              <select name="{{ form.designation.name }}" id="{{ form.designation.id_for_label }}" class="form-control">
+                {% for choice in form.designation.field.choices %}
+                  <option value="{{ choice.0 }}"> {{ choice.1 }} </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+            <div class="row form-group">
+              <div class="col col-md-3"><label for="{{ forms.bp }}" class=" form-control-label">Basic Salary</label></div>
+              <div class="col-12 col-md-9"><input type="text" id="{{ form.bp.id_for_label }}" name="{{forms.bp}}" placeholder="Add new salary scale" class="form-control "
+                {% if form.bp.value != none  %}value="{{ form.bp.value|stringformat:'s' }}" {% endif %} required></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 <div class="row">
-  <div class="col-md-8 mx-auto">
-    <div class="card card-body">
-      <h3 class="text-center mb-4">Salary Scale</h3>
-      <div class="card-body card-block">
-
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Earnings</strong>
+        </div>
+        <div class="card-body card-block">
           <div class="row form-group">
-            <div class="col col-md-3"><label for="select" class=" form-control-label">Department</label></div>
-            <div class="col-12 col-md-9">
-              <select name="select" id="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
-              </select>
+            <div class="col col-md-3">
+              <div class="form-group">
+                <label for="{{forms.da.name}}">DA:</label>
+                <input type="text" placeholder="dearness allowence"id="{{ form.da.id_for_label }}" name="{{forms.da.name}}" class="form-control"><br>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="{{forms.ta.name}}">TA:</label>
+                <input type="text" id="{{ form.ta.id_for_label }}" placeholder="travel allowence" name="{{forms.ta.name}}" class="form-control"><br>
+              </div>
+            </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="{{forms.hra.name}}">HRA:</label>
+              <input type="text" id="{{ form.hra.id_for_label }}" placeholder="house-rent allowence" name="{{forms.hra.name}}" class="form-control"><br>
             </div>
           </div>
-          <div class="row form-group">
-            <div class="col col-md-3"><label for="select" class=" form-control-label">Designation</label></div>
-            <div class="col-12 col-md-9">
-              <select name="select" id="select" class="form-control">
-                <option value="0">Please select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
-              </select>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="sum">Total:</label>
+              <input type="text" id="{{ form.bp.id_for_label }}" placeholder="sum" class="btn btn-success" name="sum" class="form-control"><br>
             </div>
           </div>
-          <div class="row form-group">
-            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Basic Salary</label></div>
-            <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="Add new salary scale" class="form-control"></div>
-          </div>
-
-
+        </div>
       </div>
     </div>
   </div>
-</div>
 
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Deductions</strong>
+        </div>
+        <div class="card-body card-block">
+          <div class="row form-group">
+          <div class="col-md-3">
+              <div class="form-group">
+                <label for="{{forms.ma.name}}">MA:</label>
+                <input id="{{ form.ma.id_for_label }}" type="text" placeholder="medical allowence"  name="{{forms.hra.name}}" class="form-control"><br>
+              </div>
+            </div>
 
-<div class="row">
-  <div class="col-lg-6">
-    <div class="card">
-      <div class="card-header">
-        <strong>Earnings</strong>
-      </div>
-      <div class="card-body card-block">
-        <div class="row form-group">
-          <div class="col col-md-3">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="{{ forms.pf.name }}">PF:</label>
+                <input id="{{ form.pf.id_for_label }}" type="text" placeholder="provident fund"  name="{{ forms.pf.name }}" class="form-control"><br>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="{{ forms.tax.name }}">Tax</label>
+                <input id="{{ form.tax.id_for_label }}" type="text" placeholder="provident fund"  name="{{ forms.tax.name }}" class="form-control"><br>
+              </div>
+            </div>
             <div class="col-md-6">
-                <div class="form-group">
-                  <label for="da">DA:</label>
-                  <input type="text" placeholder="dearness allowence" name="da" class="form-control"><br>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="ta">TA:</label>
-                  <input type="text" placeholder="travel allowence" name="ta" class="form-control"><br>
-                </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="hra">HRA:</label>
-                    <input type="text" placeholder="house-rent allowence" name="email" class="form-control"><br>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="sum">Total:</label>
-                      <input type="text" placeholder="sum" class="btn btn-primary btn-sm" name="sum" class="form-control"><br>
-                    </div>
-                  </div>
-                </div>
+              <div class="form-group">
+                <label for="sum">Total:</label>
+                <input type="text" placeholder="sum" class="btn btn-success"name="sum" class="form-control"><br>
               </div>
             </div>
           </div>
         </div>
-                                  <div class="col-lg-6">
-                                    <div class="card">
-                                      <div class="card-header">
-                                        <strong>Deductions</strong>
-                                      </div>
-                                      <div class="card-body card-block">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                              <label for="ma">MA:</label>
-                                              <input type="text" placeholder="medical allowence"  name="ma" class="form-control"><br>
-                                            </div>
-                                          </div>
-
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                <label for="pf">PF:</label>
-                                                <input type="text" placeholder="provident fund"  name="ma" class="form-control"><br>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                  <label for="sum">Total:</label>
-                                                  <input type="text" placeholder="sum" class="btn btn-primary btn-sm"name="sum" class="form-control"><br>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                    </div>
-                                </div>
+      </div>
+    </div>
+  </div>
 
 
                           <div class="card-footer" align="left">
@@ -195,14 +210,14 @@
 
                           <div class="card-footer" align="center">
                           <button type="submit" class="btn btn-primary btn-sm">
-                          <i class="fa fa-dot-circle-o"></i> Submit
+                          <i class="fas fa-paper-plane"></i> Submit
                           </button>
                           <button type="reset" class="btn btn-danger btn-sm">
                           <i class="fa fa-ban"></i> Reset
                           </button>
                           </div>
                           </form>
-                          </div>
+
                      <!-- </fieldset>
                 </div>
         </div>

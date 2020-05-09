@@ -52,3 +52,19 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.fname + ' ' + self.lname
+
+
+class salary(models.Model):
+
+    bp = models.IntegerField()
+    da = models.IntegerField()
+    ta = models.IntegerField()
+    hra = models.IntegerField()
+    ma = models.IntegerField()
+    pf = models.IntegerField()
+    tax = models.IntegerField()
+    total = models.IntegerField()
+    designation = models.ForeignKey(Designation,on_delete=models.CASCADE,)
+    department = models.ForeignKey(Department,on_delete=models.CASCADE,)
+    def __str__(self):
+        return self.designation
