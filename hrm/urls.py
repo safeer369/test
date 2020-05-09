@@ -23,4 +23,5 @@ urlpatterns = [
     path('',views.sidebar,name="sidebar" ),
     path('dashboard',views.dashboard,name="dashboard" ),
     path('employee',views.saveEmployee,name="employee" ),
+    path('salary',views.salary,name="salary" ),
 ]

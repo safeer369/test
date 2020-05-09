@@ -10,6 +10,9 @@ def dashboard(request):
 def sidebar(request):
     return render(request,'sidebar.html')
 
+def salary(request):
+    return render(request,'Salary.html')
+
 
 # def employee(request):
 #     return render(request,'employee_reg.html')

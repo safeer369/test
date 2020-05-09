@@ -1,0 +1,215 @@
+{% extends 'index.html' %}
+{% block content %}
+
+  <div class="container-fluid" style="margin-top: 7px;">
+    <button type="button" class="btn btn-success" name="button" style="float:Right"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp; Add New Salary Scale &nbsp;<i class="fa fa-money-bill" aria-hidden="true"></i></button>
+  </div>
+
+  <div class="container" style="margin-top: 100px;">
+    <div class="col-lg-6">
+    <div class="containerWidth"><strong>Detailes of salary to be paid</strong> </div>
+      <table class="table table-hover table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Department</th>
+              <th scope="col">Designation</th>
+              <th scope="col">B.P</th>
+              <th scope="col">D.A(2%)</th>
+              <th scope="col">T.A(3%)</th>
+              <th scope="col">H.R.A(3%)</th>
+              <th scope="col">Tax(-5%)</th>
+              <th scope="col">P.F(-2%)</th>
+              <th scope="col">M.A(-2%)</th>
+              <th scope="col">Net Salary</th>
+              <th scope="col">EDIT</th>
+              <th scope="col">DELETE</th>
+            </tr>
+          </thead>
+
+          <tbody>
+              <tr>
+                <th scope="row">Sales</th>
+                <th scope="row">Manager</th>
+                <td>100,000</td>
+                <td>2,000</td>
+                <td>3,000</td>
+                <td>3,000</td>
+                <td>-5000</td>
+                <td>-2000</td>
+                <td>-2000</td>
+                <td>81,000</td>
+                <td><button type="button" class="btn btn-warning" name="button"><i class="fa fa-edit"></i></button></td>
+                <td><button type="button" class="btn btn-warning" name="button"><i class="fa fa-eraser"></i></button></td>
+              </tr>
+              <tr>
+                <th scope="row">operation</th>
+                <th scope="row">Manager</th>
+                <td>100,000</td>
+                <td>2,000</td>
+                <td>3,000</td>
+                <td>3,000</td>
+                <td>-5000</td>
+                <td>-2000</td>
+                <td>-2000</td>
+                <td>81,000</td>
+                <td><button type="button" class="btn btn-warning" name="button"><i class="fa fa-edit"></i></button></td>
+                <td><button type="button" class="btn btn-warning" name="button"><i class="fa fa-eraser"></i></button></td>
+              </tr>
+              <tr>
+                <th scope="row">Marketing</th>
+                <th scope="row">Manager</th>
+                <td>100,000</td>
+                <td>2,000</td>
+                <td>3,000</td>
+                <td>3,000</td>
+                <td>-5000</td>
+                <td>-2000</td>
+                <td>-2000</td>
+                <td>81,000</td>
+                <td><button type="button" class="btn btn-warning" name="button"><i class="fa fa-edit"></i></button></td>
+                <td><button type="button" class="btn btn-warning" name="button"><i class="fa fa-eraser"></i></button></td>
+              </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+<form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">{% csrf_token %}
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <div class="card card-body">
+      <h3 class="text-center mb-4">Salary Scale</h3>
+      <div class="card-body card-block">
+
+          <div class="row form-group">
+            <div class="col col-md-3"><label for="select" class=" form-control-label">Department</label></div>
+            <div class="col-12 col-md-9">
+              <select name="select" id="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col col-md-3"><label for="select" class=" form-control-label">Designation</label></div>
+            <div class="col-12 col-md-9">
+              <select name="select" id="select" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Basic Salary</label></div>
+            <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="Add new salary scale" class="form-control"></div>
+          </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <strong>Earnings</strong>
+      </div>
+      <div class="card-body card-block">
+        <div class="row form-group">
+          <div class="col col-md-3">
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="da">DA:</label>
+                  <input type="text" placeholder="dearness allowence" name="da" class="form-control"><br>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="ta">TA:</label>
+                  <input type="text" placeholder="travel allowence" name="ta" class="form-control"><br>
+                </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="hra">HRA:</label>
+                    <input type="text" placeholder="house-rent allowence" name="email" class="form-control"><br>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="sum">Total:</label>
+                      <input type="text" placeholder="sum" class="btn btn-primary btn-sm" name="sum" class="form-control"><br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                                  <div class="col-lg-6">
+                                    <div class="card">
+                                      <div class="card-header">
+                                        <strong>Deductions</strong>
+                                      </div>
+                                      <div class="card-body card-block">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                              <label for="ma">MA:</label>
+                                              <input type="text" placeholder="medical allowence"  name="ma" class="form-control"><br>
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-6">
+                                              <div class="form-group">
+                                                <label for="pf">PF:</label>
+                                                <input type="text" placeholder="provident fund"  name="ma" class="form-control"><br>
+                                              </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                  <label for="sum">Total:</label>
+                                                  <input type="text" placeholder="sum" class="btn btn-primary btn-sm"name="sum" class="form-control"><br>
+
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+
+
+                          <div class="card-footer" align="left">
+                          <label for="sum">Net salary</label>
+                          <input type="text" placeholder="total" class="form-controll" name="sum" class="form-control">
+                          </div>
+
+                          <br><br>
+
+
+
+                          <div class="card-footer" align="center">
+                          <button type="submit" class="btn btn-primary btn-sm">
+                          <i class="fa fa-dot-circle-o"></i> Submit
+                          </button>
+                          <button type="reset" class="btn btn-danger btn-sm">
+                          <i class="fa fa-ban"></i> Reset
+                          </button>
+                          </div>
+                          </form>
+                          </div>
+                     <!-- </fieldset>
+                </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+{% endblock %}
