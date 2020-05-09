@@ -1,0 +1,466 @@
+{% extends 'sidebar.html' %}
+{% block content %}
+
+
+<div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Dashboard</h1>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+        {% endif %}
+        <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">BASIC INFO</strong>
+                            </div>
+                            <div class="card-body">
+
+                                <div id="pay-invoice">
+                                    <div class="card-body">
+
+                                        <form action="#" method="post">
+
+
+
+                                            {% csrf_token %}
+                                            <div class="form-group has-success">
+                                                <label for="{{ form.empid.name }}" class="control-label mb-1">Employee ID</label>
+                                                <input type="text"
+                                                       name="{{ form.empid.name }}"
+                                                       id="{{ form.empid.id_for_label }}"
+                                                       {% if form.fname.value != None %}value="{{ form.empid.value|stringformat:'s' }}"{% endif %}
+                                                       maxlength="{{ form.empid.field.max_length }}" {% if form.empid.field.required %}required{% endif %}
+                                                       class="form-control {{ form.empid.name }}"  data-val-required="Please enter first name" >
+                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label for="{{ form.fname.name }}" class="control-label mb-1">First Name</label>
+                                                <input type="text"
+                                                       name="{{ form.fname.name }}"
+                                                       id="{{ form.fname.id_for_label }}"
+                                                       {% if form.fname.value != None %}value="{{ form.fname.value|stringformat:'s' }}"{% endif %}
+                                                       maxlength="{{ form.fname.field.max_length }}" {% if form.fname.field.required %}required{% endif %}
+                                                       class="form-control {{ form.fname.name }}"  data-val-required="Please enter first name" >
+
+                                                <!--<input id="cc-name" name="cc-name" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name">-->
+                                                <span class="help-block field-validation-valid" data-valmsg-for="{{ form.fname.name }}" data-valmsg-replace="true"></span>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label for="{{ form.lname.name }}" class="control-label mb-1">Last Name</label>
+                                                <input id="{{ form.lname.id_for_label }}" name="{{ form.lname.name }}" type="text" class="form-control {{ form.lname.name }}"{% if form.lname.value != None %}value="{{ form.lname.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.lname.field.max_length }}" {% if form.lname.field.required %}required{% endif %}
+                                                data-val-required="Please enter the name on card">
+                                                <span class="help-block field-validation-valid" data-valmsg-for="{{ form.lname.name }}" data-valmsg-replace="true"></span>
+                                            </div>
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="{{ form.phone.name }}" class="control-label mb-1">Phone Number</label>
+                                                <input id="{{ form.phone.id_for_label }}" name="{{ form.phone.name }}" type="text" class="form-control {{ form.phone.name }}"
+                                                {% if form.phone.value != None %}value="{{ form.phone.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.phone.field.max_length }}" {% if form.phone.field.required %}required{% endif %}
+                                                data-val-required="Please enter the name on card"  >
+
+                                                <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                            </div>
+
+
+
+
+                                            <!-- <div class="form-group has-success">
+                                                <label for="cc-name" class="control-label mb-1">Email</label>
+                                                <input id="cc-name" name="cc-name" type="email" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name">
+                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                            </div> -->
+
+                                            <div class="form-group">
+                                                <label for="{{ form.email.name }}" class="control-label mb-1">Email</label>
+                                                <input id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" type="text" class="form-control {{ form.email.name }}"
+                                                {% if form.email.value != None %}value="{{ form.email.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.email.field.max_length }}" {% if form.email.field.required %}required{% endif %}>
+                                                <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                            </div>
+
+
+                                           <div class="form-group">
+                                                <label for="{{ form.picture.name }}" class="control-label mb-1">picture</label>
+                                                <input id="{{ form.picture.id_for_label }}" name="{{ form.picture.name }}" type="file" class="form-control {{ form.picture.name }}"
+                                                {% if form.email.value != None %}value="{{ form.email.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.picture.field.max_length }}" {% if form.email.field.required %}required{% endif %}>
+                                                <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                            </div>
+
+                                            <!-- <div class="row form-group">
+                                                <div class="col col-md-3"><label class="form-control-label">Gender</label></div>
+                                                <div class="col col-md-9">
+                                                    <div class="form-check-inline form-check">
+                                                        <label for="inline-radio1" class="form-check-label ">
+                                                            <input type="radio" id="inline-radio1" name="inline-radios" value="option1" class="form-check-input">male
+                                                        </label>
+                                                        <label for="inline-radio2" class="form-check-label ">
+                                                            <input type="radio" id="inline-radio2" name="inline-radios" value="option2" class="form-check-input">Female
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.gender.name }}" class=" form-control-label">Gender</label></div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="{{ form.gender.name }}" id="{{ form.gender.id_for_label }}" class="form-control">
+                                                        {% for choice in form.gender.field.choices %}
+                                                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <!-- <button type="submit" class="btn btn-lg btn-info btn-block">
+
+                                            <span id="payment-button-amount">SUBMIT 123</span>
+                                            <span id="payment-button-sending" style="display:none;">Sending…</span>
+                                            </button> -->
+
+
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            </div> <!-- .card -->
+                            </div><!--/.col-->
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header"><strong>Personal Info</strong></div>
+                                    <div class="card-body card-block">
+
+
+
+
+                                        <div class="row form-group">
+                                            <div class="col-8">
+                                                <div class="form-group"><label for="{{ form.address.name }}" class=" form-control-label">Address</label>
+                                                    <input id="{{ form.address.id_for_label }}" name="{{ form.address.name }}" type="text" class="form-control {{ form.address.name }}"
+                                                {% if form.address.value != None %}value="{{ form.address.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.address.field.max_length }}" {% if form.address.field.required %}required{% endif %}></div>
+                                            </div>
+
+
+                                            <div class="col-8">
+                                                <div class="form-group"><label for="{{ form.paddress.name }}" class=" form-control-label">Permenent Address</label>
+                                                    <input id="{{ form.paddress.id_for_label }}" name="{{ form.paddress.name }}" type="text" class="form-control {{ form.paddress.name }}"
+                                                {% if form.paddress.value != None %}value="{{ form.paddress.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.paddress.field.max_length }}" {% if form.paddress.field.required %}required{% endif %}></div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                         <div class="col-8">
+                                                <div class="form-group"><label for="{{ form.dob.name }}" class=" form-control-label">Date of birth</label>
+                                                    <input id="{{ form.dob.id_for_label }}" name="{{ form.dob.name }}" type="text" class="form-control {{ form.dob.name }}"
+                                                {% if form.dob.value != None %}value="{{ form.dob.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.dob.field.max_length }}" {% if form.dob.field.required %}required{% endif %}></div>
+                                            </div>
+
+                                     <!--    <div class="col col-md-3"><label class=" form-control-label">Marital Status</label></div>
+                                        <div class="col col-md-9">
+                                            <div class="form-check">
+                                                <div class="radio">
+                                                    <label for="radio1" class="form-check-label ">
+                                                        <input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">Single
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label for="radio2" class="form-check-label ">
+                                                        <input type="radio" id="radio2" name="radios" value="option2" class="form-check-input">Marride
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="col-8">
+                                               <div class="form-group"><label for="{{ form.mstatus.name }}" class=" form-control-label">Marital Status</label>
+                                                 <select name="{{ form.mstatus.name }}" id="{{ form.mstatus.id_for_label }}" class="form-control">
+                                                     {% for choice in form.mstatus.field.choices %}
+                                                         <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                                     {% endfor %}
+                                                 </select>
+                                             </div>
+                                           </div>
+
+
+
+
+                                       <div class="form-group"><label for="{{ form.post.name }}" class=" form-control-label">Postal Code</label>
+                                                    <input id="{{ form.post.id_for_label }}" name="{{ form.post.name }}" type="text" class="form-control {{ form.post.name }}"
+                                                {% if form.post.value != None %}value="{{ form.post.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.post.field.max_length }}" {% if form.post.field.required %}required{% endif %}></div>
+
+
+                                         <div class="form-group"><label for="{{ form.city.name }}" class=" form-control-label">City</label>
+                                                    <input id="{{ form.city.id_for_label }}" name="{{ form.city.name }}" type="text" class="form-control {{ form.city.name }}"
+                                                {% if form.city.value != None %}value="{{ form.city.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.city.field.max_length }}" {% if form.city.field.required %}required{% endif %}></div>
+
+                                        <div class="form-group"><label for="{{ form.country.name }}" class=" form-control-label">Country</label>
+                                                    <input id="{{ form.country.id_for_label }}" name="{{ form.country.name }}" type="text" class="form-control {{ form.country.name }}"
+                                                {% if form.country.value != None %}value="{{ form.country.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.country.field.max_length }}" {% if form.country.field.required %}required{% endif %}></div>
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Work Info</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <!-- <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal"> -->
+
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.designation.name }}" class=" form-control-label">Designation</label></div>
+                                                <div class="col-12 col-md-9">
+                                                  <select name="{{ form.designation.name }}" id="{{ form.designation.id_for_label }}" class="form-control">
+                                                      {% for choice in form.designation.field.choices %}
+                                                          <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                                      {% endfor %}
+                                                  </select>
+                                                </div>
+                                            </div>
+
+
+
+                                            <!-- <div class="row form-group">
+                                                <div class="col col-md-3"><label for="select" class=" form-control-label">Department</label></div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="select" id="select" class="form-control">
+                                                        <option value="0">Please select</option>
+                                                        <option value="1">Sales</option>
+                                                        <option value="2">Operation</option>
+                                                        <option value="3">Marketting</option>
+                                                        <option value="4">Accounts</option>
+                                                    </select>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.department.name }}" class=" form-control-label">Department</label></div>
+                                                <div class="col-12 col-md-9">
+                                                  <select name="{{ form.department.name }}" id="{{ form.department.id_for_label }}" class="form-control">
+                                                      {% for choice in form.department.field.choices %}
+                                                          <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                                      {% endfor %}
+                                                  </select>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.doj.name }}" class=" form-control-label">Date Of Join</label></div>
+                                                <div class="col-12 col-md-9"><input id="{{ form.doj.id_for_label }}" name="{{ form.doj.name }}" type="text" class="form-control {{ form.doj.name }}"
+                                                {% if form.doj.value != None %}value="{{ form.doj.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.doj.field.max_length }}" {% if form.doj.field.required %}required{% endif %}></div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.wemail.name }}" class=" form-control-label">Work Email</label></div>
+                                                <div class="col-12 col-md-9"><input id="{{ form.wemail.id_for_label }}" name="{{ form.wemail.name }}" type="text" class="form-control {{ form.wemail.name }}"
+                                                {% if form.w_email.value != None %}value="{{ form.wemail.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.wemail.field.max_length }}" {% if form.wemail.field.required %}required{% endif %}></div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3"><label for="{{ form.wphone.name }}" class="form-control-label">Work Phone</label></div>
+                                                <div class="col-12 col-md-9"><input id="{{ form.wphone.id_for_label }}" name="{{ form.wphone.name }}" type="text" class="form-control {{ form.wphone.name }}"
+                                                {% if form.w_phone.value != None %}value="{{ form.wphone.value|stringformat:'s' }}"{% endif %}
+                                                maxlength="{{ form.wphone.field.max_length }}" {% if form.wphone.field.required %}required{% endif %}></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   <!--  <div class="card">
+                                                <div class="card-header">
+                                                    <strong>Education Details</strong>
+                                                </div>
+                                                <form>
+                                                    <div class="input1_fields_wrap">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+
+                                                                <div class="form-group" >
+                                                                    <label for="">Course</label>
+                                                                    <input name="Course[]" type="text" value="" class="form-control" required="">
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="">Institute Name</label>
+                                                                    <input name="Instname[]" type="text" value="" class="form-control" required="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="">Mark(%)</label>
+                                                                    <input name="mark[]" type="number" value="" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Year Of Completion</label>
+                                                                    <input name="yoc[]" type="date" value="" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <button style="background-color:green;" class="add1_field_button btn btn-info active">Add More</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+ -->
+
+
+
+
+
+                                <!-- <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong>Work Experience</strong>
+                                        </div>
+                                        <div class="card-body card-block">
+                                            <div class="col-md-12">
+                                                <form>
+                                                    <div class="input_fields_wrap">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+
+                                                                <div class="form-group" >
+                                                                    <label for="">Previous Company</label>
+                                                                    <input name="pc[]" type="text" value="" class="form-control" required="">
+                                                                </div>
+                                                                <div class="form-group" >
+                                                                    <label for="">Job Title</label>
+                                                                    <input name="job[]" type="text" value="" class="form-control" required="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="">From date</label>
+                                                                    <input name="fdate[]" type="date" value="" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">To date</label>
+                                                                    <input name="tdate[]" type="date" value="" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Description</label>
+                                                                    <textarea class="form-control" name="description[]" required=""></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <button style="background-color:green;" class="add_field_button btn btn-info active">Add More</button>
+                                                        </div>
+                                                    </div> -->
+
+                                                    <button type="submit" class="btn btn-lg btn-info btn-block">
+
+                                            <span id="payment-button-amount">SUBMIT 123</span>
+
+                                            </button>
+                                                </form>
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                        <!-- <script>
+                                        $(document).ready(function() {
+                                        var max_fields = 15; //maximum input boxes allowed
+                                        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+                                        var add_button = $(".add_field_button"); //Add button ID
+                                        var x = 1; //initlal text box count
+                                        $(add_button).click(function(e){ //on add input button click
+                                        e.preventDefault();
+                                        if(x < max_fields){ //max input box allowed
+                                        x++; //text box increment
+                                        $(wrapper).append('<div class="row"><div class="col-md-6"><div class="form-group" ><label for="">Previous Company</label><input name="pc[]" type="text" value="" class="form-control" required=""></div><div class="form-group" ><label for="">Job Title</label><input name="job[]" type="text" value="" class="form-control" required=""></div></div><div class="col-md-6"><div class="form-group"><label for="">From date</label><input name="fdate[]" type="date" value="" class="form-control"></div><div class="form-group"><label for="">To date</label><input name="tdate[]" type="date" value="" class="form-control"></div><div class="form-group"><label for="">Description</label><textarea class="form-control" name="description[]" required=""></textarea></div></div><div style="cursor:pointer;background-color:red;" class="remove_field btn btn-info">Remove</div></div>'); //add input box
+                                        }
+                                        });
+                                        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                                        e.preventDefault(); $(this).parent('div').remove(); x--;
+                                        })
+                                        });
+                                        </script>
+                                        <script>
+                                        $(document).ready(function() {
+                                        var max_fields = 15; //maximum input boxes allowed
+                                        var wrapper = $(".input1_fields_wrap"); //Fields wrapper
+                                        var add_button = $(".add1_field_button"); //Add button ID
+                                        var x = 1; //initlal text box count
+                                        $(add_button).click(function(e){ //on add input button click
+                                        e.preventDefault();
+                                        if(x < max_fields){ //max input box allowed
+                                        x++; //text box increment
+                                        $(wrapper).append('<div class="row"><div class="col-md-6"><div class="form-group" ><label for="">Course</label><input name="Course[]" type="text" value="" class="form-control" required=""></div><div class="form-group" ><label for="">Institute Name</label><input name="Instname[]" type="text" value="" class="form-control" required=""></div></div><div class="col-md-6"><div class="form-group"><label for="">Mark(%)</label><input name="mark[]" type="number" value="" class="form-control"></div><div class="form-group"><label for="">Year Of Completion</label><input name="yoc[]" type="date" value="" class="form-control"></div></div><div style="cursor:pointer;background-color:red;" class="remove_field btn btn-info">Remove</div></div>'); //add input box
+                                        }
+                                        });
+                                        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                                        e.preventDefault(); $(this).parent('div').remove(); x--;
+                                        })
+                                        });
+                                        </script> -->
+                                        <!-- Right Panel -->
+                                        <!-- Scripts -->
+                                        <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+                                        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+                                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+                                        <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+                                        <script src="assets/js/main.js"></script>
+
+{% endblock %}
