@@ -66,5 +66,5 @@ class salary(models.Model):
     total = models.IntegerField()
     designation = models.ForeignKey(Designation,on_delete=models.CASCADE,)
     department = models.ForeignKey(Department,on_delete=models.CASCADE,)
-    def __str__(self):
-        return self.designation
+    # def __str__(self):
+    #     return self.designation
