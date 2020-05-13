@@ -55,7 +55,8 @@ class Employee(models.Model):
 
 
 class salary(models.Model):
-
+    designation = models.ForeignKey(Designation, on_delete=models.CASCADE, )
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, )
     bp = models.IntegerField()
     da = models.IntegerField()
     ta = models.IntegerField()
@@ -63,8 +64,9 @@ class salary(models.Model):
     ma = models.IntegerField()
     pf = models.IntegerField()
     tax = models.IntegerField()
-    total = models.IntegerField()
-    designation = models.ForeignKey(Designation,on_delete=models.CASCADE,)
-    department = models.ForeignKey(Department,on_delete=models.CASCADE,)
+    e_total = models.IntegerField()
+    r_total = models.IntegerField()
+    netsalary=models.IntegerField()
+
     # def __str__(self):
     #     return self.designation

@@ -22,7 +22,7 @@ def salary(request):
             return HttpResponseRedirect('salary')
         else:
             print("############INVALID FORM############")
-    return render(request,'Salary.html',{"form":form,"hra_rate":0.2,"ma_rate":0.1})
+    return render(request,'Salary.html',{"form":form,"hra_rate":0.3,"ma_rate":-0.1,"da_rate":0.2,"ta_rate":0.1,"pf_rate":-0.25,"tax_rate":-0.2,"e-total_rate":("da_rate"+"hra_rate"+"ta_rate")})
 
 
 # def employee(request):

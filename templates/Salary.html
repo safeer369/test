@@ -5,17 +5,32 @@
   var calculate = function() {
 
   var bp = document.getElementById('{{form.bp.id_for_label}}').value;
+  var da = bp *document.getElementById('da').value;
+  var ta = bp *document.getElementById('ta').value;
   var hra = bp *document.getElementById('hra').value;
+  var e_total = bp *document.getElementById('e_total').value;
   var ma = bp *document.getElementById('ma').value;
+  var pf = bp *document.getElementById('pf').value;
+  var tax= bp *document.getElementById('tax').value;
+  document.getElementById('{{form.da.id_for_label}}').value = da;
+  document.getElementById('{{form.ta.id_for_label}}').value = ta;
   document.getElementById('{{form.hra.id_for_label}}').value = hra;
+  document.getElementById('{{form.e_total.id_for_label}}').value = e_total;
   document.getElementById('{{form.ma.id_for_label}}').value = ma;
+  document.getElementById('{{form.pf.id_for_label}}').value = pf;
+  document.getElementById('{{form.tax.id_for_label}}').value = tax;
 }
 
 </script>
 
-
+  <input type="hidden" id="da" value="{{da_rate}}">
+  <input type="hidden" id="ta" value="{{ta_rate}}">
   <input type="hidden" id="hra" value="{{hra_rate}}">
+  <input type="hidden" id="e_total" value="{{e_total_rate}}">
   <input type="hidden" id="ma" value="{{ma_rate}}">
+  <input type="hidden" id="pf" value="{{pf_rate}}">
+  <input type="hidden" id="tax" value="{{tax_rate}}">
+
 
   <div class="container-fluid" style="margin-top: 7px;">
     <button type="button" class="btn btn-success" name="button" style="float:Right"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp; Add New Salary Scale &nbsp;<i class="fa fa-money-bill" aria-hidden="true"></i></button>
@@ -167,8 +182,8 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="{{form.total.name}}">Total:</label>
-              <input type="text" id="{{ form.total.id_for_label }}" placeholder="sum"  name="{{form.total.name}}" class="form-control"><br>
+              <label for="{{form.e_total.name}}">Total:</label>
+              <input type="text" id="{{ form.e_total.id_for_label }}" placeholder="sum"  name="{{form.e_total.name}}" class="form-control"><br>
             </div>
           </div>
         </div>
@@ -199,13 +214,15 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label for="{{ form.tax.name }}">Tax</label>
-                <input id="{{ form.tax.id_for_label }}" type="text" placeholder="provident fund"  name="{{ form.tax.name }}" class="form-control"><br>
+                <input id="{{ form.tax.id_for_label }}" type="text" placeholder="professional tax"  name="{{ form.tax.name }}" class="form-control"><br>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="sum">Total:</label>
-                <input type="text" placeholder="sum" name="sum1" class="form-control"><br>
+                  <label for="{{form.r_total.name}}">Total:</label>
+                  <input type="text" id="{{ form.r_total.id_for_label }}" placeholder="sum"  name="{{form.r_total.name}}" class="form-control"><br>
+<!--                <label for="sum">Total:</label>-->
+<!--                <input type="text" placeholder="sum" name="sum1" class="form-control"><br>-->
               </div>
             </div>
           </div>
